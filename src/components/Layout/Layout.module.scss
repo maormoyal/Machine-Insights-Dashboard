@@ -1,0 +1,130 @@
+/* src/components/Layout/Layout.module.scss */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f4f4f4;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.topBar {
+  width: calc(100% - 72px);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-shadow: 0 2px 8px 0 rgba(2, 29, 61, 0.12);
+  background-color: #fff;
+  margin-left: 72px;
+  position: fixed;
+  top: 0;
+}
+
+.sidebar {
+  width: 72px;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2f2f66;
+}
+
+.nav {
+  width: 100%;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    li {
+      margin: 10px 0;
+    }
+
+    .circleInfo {
+      width: 16px;
+      height: 16px;
+      flex-grow: 0;
+      font-family: FontAwesome6Sharp;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: #fff;
+    }
+  }
+}
+
+.navItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  text-decoration: none;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #41417a;
+    border-radius: 8px;
+  }
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 16px;
+
+  h1 {
+    font-size: 20px;
+    color: #2f2f66;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.profile {
+  width: 48px;
+  height: 48px;
+  background-color: #009845;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 20px 0;
+}
+
+.profileInitials {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.mainContent {
+  flex-grow: 1;
+  margin: 56px 0 0 72px;
+  padding: 20px;
+  overflow: auto;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
+}

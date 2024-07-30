@@ -1,0 +1,68 @@
+/* src/components/DiagnosticTable/DiagnosticTable.module.scss */
+.entriesTableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.entriesTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Adjust the second value for row gap */
+  padding: 0 8px 0;
+  border-radius: 8px;
+  background-color: #e6e8ec;
+  box-shadow: 0 2px 8px rgba(2, 29, 61, 0.12);
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #55687d;
+}
+
+.entriesTable td {
+  padding: 10px;
+  text-align: left;
+}
+
+.entriesTable th {
+  text-align: left;
+}
+
+.tableSearchWrapper {
+  margin-bottom: 10px;
+}
+
+.tableSearchWrapper input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+th {
+  height: 40px;
+  position: sticky;
+  top: 0;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #55687d;
+
+  span {
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+}
+
+tbody tr {
+  height: 50px;
+  background-color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}

@@ -1,0 +1,37 @@
+/* src/components/Modal/Modal.module.scss */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(1, 21, 43, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px 0 rgba(2, 29, 61, 0.12);
+  border: solid 1px #b1b9c3;
+  background-color: #ffffff;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #01152b;
+  &:hover {
+    color: #4a4b4a;
+    background-color: unset;
+  }
+}

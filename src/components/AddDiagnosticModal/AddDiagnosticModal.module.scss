@@ -1,0 +1,72 @@
+/* src/components/AddDiagnosticModal/AddDiagnosticModal.module.scss */
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #01152b;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid #d1d5db;
+  border-radius: 4px;
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #55687d;
+  }
+
+  input,
+  select {
+    padding: 0 12px 12px 0;
+    // border: 1px solid #d1d5db;
+    // border-radius: 4px;
+    font-size: 16px;
+    color: #2d2d2d;
+    width: 100%;
+  }
+
+  input[type='date'] {
+    appearance: none;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: white;
+  color: #2d2d2d;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}

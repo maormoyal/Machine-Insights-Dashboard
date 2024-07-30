@@ -1,0 +1,54 @@
+/* src/components/FusionTrendGraph/FusionTrendGraph.module.scss */
+.fusionTrendGraph {
+  padding: 12px 32px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(2, 29, 61, 0.12);
+  border-radius: 8px;
+  background-color: #e6e8ec;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #2d2d2d;
+}
+
+.datePicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.datePicker span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.react-datepicker-wrapper {
+  display: inline-block;
+}
+
+.react-datepicker__input-container {
+  display: inline-block;
+}
+
+input[type='text'] {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2d2d2d;
+}
+
+.chartContainer {
+  height: 256px;
+  width: 100%;
+  background-color: #fff;
+}
