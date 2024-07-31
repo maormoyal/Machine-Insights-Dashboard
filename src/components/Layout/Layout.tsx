@@ -43,14 +43,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 title={item.title}
                 onClick={() => handleNavItemClick(item.title)}
               >
-                <img src={item.icon} alt={`${item.title} Icon`} width={24} />
+                <img src={item.icon} alt={`${item.title} Icon`} width={16} />
               </li>
             ))}
           </ul>
         </nav>
         <div className={styles.profileContainer}>
           <div className={styles.navItem} title='Logout'>
-            <img src={logoutIcon} alt='logout Icon' width={24} />
+            <img src={logoutIcon} alt='logout Icon' width={16} />
           </div>
           <div className={styles.profile} title='User'>
             <span className={styles.profileInitials}>MM</span>

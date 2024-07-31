@@ -56,17 +56,21 @@ h2 {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-}
 
-.cancelButton {
-  padding: 10px 20px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  background-color: white;
-  color: #2d2d2d;
-  cursor: pointer;
+  button {
+    height: 48px;
+    border-radius: 8px;
+    padding: 4px 16px;
+  }
 
-  &:hover {
-    background-color: #f3f4f6;
+  .cancelButton {
+    border: 1px solid #d1d5db;
+    background-color: white;
+    color: #2d2d2d;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
   }
 }

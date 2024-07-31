@@ -23,7 +23,6 @@ interface GlobalFilterProps {
   setGlobalFilter: (filterValue: string) => void;
 }
 
-// Define a default UI for filtering
 const GlobalFilter: React.FC<GlobalFilterProps> = ({
   preGlobalFilteredRows,
   globalFilter,
@@ -36,7 +35,7 @@ const GlobalFilter: React.FC<GlobalFilterProps> = ({
       <input
         value={globalFilter || ''}
         onChange={(e) => {
-          setGlobalFilter(e.target.value || ''); // Set empty string to remove the filter entirely
+          setGlobalFilter(e.target.value || '');
         }}
         placeholder={`Search in ${count} records...`}
         style={{
@@ -60,8 +59,14 @@ const DiagnosticTable: React.FC<DiagnosticTableProps> = ({ insights }) => {
       {
         Header: 'Diagnostic Date',
         accessor: 'created_at',
-        Cell: ({ value }: { value: string }) =>
-          new Date(value).toLocaleString(),
+        Cell: ({ value }: { value: string }) => {
+          const date = new Date(value);
+          return `${date.getDate().toString().padStart(2, '0')}.${(
+            date.getMonth() + 1
+          )
+            .toString()
+            .padStart(2, '0')}.${date.getFullYear()}`;
+        },
       },
       {
         Header: 'Fault Type',
@@ -116,7 +121,7 @@ const DiagnosticTable: React.FC<DiagnosticTableProps> = ({ insights }) => {
             onClick={() => setShowModal(true)}
             className={styles.addButton}
           >
-            + Add new
+            <span className={styles.addIcon}>+</span> Add new
           </button>
         </div>
 
@@ -130,19 +135,36 @@ const DiagnosticTable: React.FC<DiagnosticTableProps> = ({ insights }) => {
                 >
                   {headerGroup.headers.map((column, columnIndex) => (
                     <th
+                      // @ts-expect-error: Property 'getSortByToggleProps' does not exist on type 'HeaderGroup<Insight>'
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                       key={columnIndex}
                     >
                       {column.render('Header')}
                       <span>
+                        {/* @ts-expect-error: Property 'isSorted' does not exist on type 'ColumnInstance<Insight>' */}
                         {column.isSorted ? (
+                          // @ts-expect-error: Property 'isSortedDesc' does not exist on type 'ColumnInstance<Insight>'
                           column.isSortedDesc ? (
-                            <img src={sortDownIcon} alt='sorted descending' />
+                            <div className={styles.imgWrapper}>
+                              <img src={sortDownIcon} alt='sorted descending' />
+                            </div>
                           ) : (
-                            <img src={sortUpIcon} alt='sorted ascending' />
+                            <div className={styles.imgWrapper}>
+                              <img
+                                src={sortUpIcon}
+                                alt='sorted ascending'
+                                width={23}
+                              />
+                            </div>
                           )
                         ) : (
-                          <img src={sortIcon} alt='sortable' width={15} />
+                          <div className={styles.imgWrapper}>
+                            <img
+                              className={styles.sort}
+                              src={sortIcon}
+                              alt='sortable'
+                            />
+                          </div>
                         )}
                       </span>
                     </th>
