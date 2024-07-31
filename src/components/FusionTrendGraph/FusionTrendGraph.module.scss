@@ -1,6 +1,6 @@
 /* src/components/FusionTrendGraph/FusionTrendGraph.module.scss */
 .fusionTrendGraph {
-  padding: 12px 32px;
+  padding: 8px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(2, 29, 61, 0.12);
@@ -15,15 +15,58 @@
   margin-bottom: 10px;
 }
 
-h2 {
-  font-size: 18px;
-  color: #2d2d2d;
+.chartHeaderTitle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #01152b;
+  }
 }
 
 .datePicker {
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+
+  &::before {
+    content: 'From';
+    position: absolute;
+    top: 7px;
+    left: 30px;
+    transform: translateY(-50%);
+    color: #01152b;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    width: 0;
+    height: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #01152b;
+    font-size: 20px;
+    font-weight: bold;
+    border-right: 2px solid #01152b;
+    border-bottom: 2px solid #01152b;
+    width: 6px;
+    height: 6px;
+    cursor: pointer;
+    transform: rotate(45deg);
+  }
 }
 
 .datePicker span {
@@ -39,16 +82,32 @@ h2 {
   display: inline-block;
 }
 
-input[type='text'] {
-  padding: 8px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #2d2d2d;
-}
-
 .chartContainer {
   height: 256px;
   width: 100%;
   background-color: #fff;
+}
+
+input.datePickerInput {
+  width: 170px;
+  padding: 8px 8px 8px 45%;
+  color: #2d2d2d;
+  border: none;
+  border-radius: unset;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-align: left;
+  color: #01152b;
+  background-image: url('../../assets/calendar.icon.svg');
+  background-repeat: no-repeat;
+  background-position: left 8px center;
+  background-size: 20px 20px;
+  position: relative;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }

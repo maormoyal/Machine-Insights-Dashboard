@@ -1,5 +1,5 @@
 // src/components/Layout/Layout.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Layout.module.scss';
 
 import datamindLogo from '../../assets/datamind-logo.icon.svg';
@@ -14,34 +14,45 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+const navItems = [
+  { title: 'Diagnostics', icon: factoryIcon },
+  { title: 'Information', icon: circleInfoIcon },
+  { title: 'Alerts', icon: bellIcon },
+  { title: 'Files', icon: fileIcon },
+  { title: 'Settings', icon: settingsIcon },
+];
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const [selectedNavItem, setSelectedNavItem] = useState<string>('Diagnostics');
+
+  const handleNavItemClick = (item: string) => {
+    setSelectedNavItem(item);
+  };
+
   return (
     <div className={styles.layout}>
       <aside className={styles.sidebar}>
         <nav className={styles.nav}>
           <ul>
-            <li className={styles.navItem}>
-              <img src={factoryIcon} alt='factory Icon' width={24} />
-            </li>
-            <li className={styles.navItem}>
-              <img src={circleInfoIcon} alt='circle-Info Icon' width={24} />
-            </li>
-            <li className={styles.navItem}>
-              <img src={bellIcon} alt='bell Icon' width={24} />
-            </li>
-            <li className={styles.navItem}>
-              <img src={fileIcon} alt='file Icon' width={24} />
-            </li>
-            <li className={styles.navItem}>
-              <img src={settingsIcon} alt='settings Icon' width={24} />
-            </li>
+            {navItems.map((item) => (
+              <li
+                key={item.title}
+                className={`${styles.navItem} ${
+                  selectedNavItem === item.title ? styles.selected : ''
+                }`}
+                title={item.title}
+                onClick={() => handleNavItemClick(item.title)}
+              >
+                <img src={item.icon} alt={`${item.title} Icon`} width={24} />
+              </li>
+            ))}
           </ul>
         </nav>
         <div className={styles.profileContainer}>
-          <div className={styles.navItem}>
+          <div className={styles.navItem} title='Logout'>
             <img src={logoutIcon} alt='logout Icon' width={24} />
           </div>
-          <div className={styles.profile}>
+          <div className={styles.profile} title='User'>
             <span className={styles.profileInitials}>MM</span>
           </div>
         </div>

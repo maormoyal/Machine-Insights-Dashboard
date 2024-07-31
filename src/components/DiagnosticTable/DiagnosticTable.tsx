@@ -1,5 +1,5 @@
 // src/components/DiagnosticTable/DiagnosticTable.tsx
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   useTable,
   useGlobalFilter,
@@ -15,6 +15,7 @@ import styles from './DiagnosticTable.module.scss';
 import sortIcon from '../../assets/sort.icon.svg';
 import sortUpIcon from '../../assets/sort-up.icon.svg';
 import sortDownIcon from '../../assets/sort-down.icon.svg';
+import AddDiagnosticModal from '../AddDiagnosticModal/AddDiagnosticModal';
 
 interface GlobalFilterProps {
   preGlobalFilteredRows: Row<Insight>[];
@@ -52,6 +53,8 @@ interface DiagnosticTableProps {
 }
 
 const DiagnosticTable: React.FC<DiagnosticTableProps> = ({ insights }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const columns: Column<Insight>[] = useMemo(
     () => [
       {
@@ -98,67 +101,88 @@ const DiagnosticTable: React.FC<DiagnosticTableProps> = ({ insights }) => {
   };
 
   return (
-    <>
-      <GlobalFilter
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={state.globalFilter}
-        setGlobalFilter={setGlobalFilterState}
-      />
+    <div className={styles.DiagnosticTableContainer}>
       <div className={styles.entriesTableContainer}>
-        <table {...getTableProps()} className={styles.entriesTable}>
-          <thead>
-            {headerGroups.map((headerGroup, headerGroupIndex) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroupIndex}>
-                {headerGroup.headers.map((column, columnIndex) => (
-                  <th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={columnIndex}
-                  >
-                    {column.render('Header')}
-                    <span>
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <img src={sortDownIcon} alt='sorted descending' />
-                        ) : (
-                          <img src={sortUpIcon} alt='sorted ascending' />
-                        )
-                      ) : (
-                        <img src={sortIcon} alt='sortable' width={15} />
-                      )}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={columns.length}
-                  style={{ textAlign: 'center', padding: '20px' }}
+        <div className={styles.header}>
+          <div className={styles.titleWrapper}>
+            <h2>Diagnostics</h2>
+            <GlobalFilter
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              globalFilter={state.globalFilter}
+              setGlobalFilter={setGlobalFilterState}
+            />
+          </div>
+          <button
+            onClick={() => setShowModal(true)}
+            className={styles.addButton}
+          >
+            + Add new
+          </button>
+        </div>
+
+        <div className={styles.tableWrapper}>
+          <table {...getTableProps()} className={styles.entriesTable}>
+            <thead>
+              {headerGroups.map((headerGroup, headerGroupIndex) => (
+                <tr
+                  {...headerGroup.getHeaderGroupProps()}
+                  key={headerGroupIndex}
                 >
-                  No results found
-                </td>
-              </tr>
-            ) : (
-              rows.map((row, rowIndex) => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()} key={rowIndex}>
-                    {row.cells.map((cell, cellIndex) => (
-                      <td {...cell.getCellProps()} key={cellIndex}>
-                        {cell.render('Cell')}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
+                  {headerGroup.headers.map((column, columnIndex) => (
+                    <th
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                      key={columnIndex}
+                    >
+                      {column.render('Header')}
+                      <span>
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <img src={sortDownIcon} alt='sorted descending' />
+                          ) : (
+                            <img src={sortUpIcon} alt='sorted ascending' />
+                          )
+                        ) : (
+                          <img src={sortIcon} alt='sortable' width={15} />
+                        )}
+                      </span>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={columns.length}
+                    style={{ textAlign: 'center', padding: '20px' }}
+                  >
+                    No results found
+                  </td>
+                </tr>
+              ) : (
+                rows.map((row, rowIndex) => {
+                  prepareRow(row);
+                  return (
+                    <tr {...row.getRowProps()} key={rowIndex}>
+                      {row.cells.map((cell, cellIndex) => (
+                        <td {...cell.getCellProps()} key={cellIndex}>
+                          {cell.render('Cell')}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </>
+      <AddDiagnosticModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+      />
+    </div>
   );
 };
 

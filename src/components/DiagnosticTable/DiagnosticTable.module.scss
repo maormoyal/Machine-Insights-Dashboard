@@ -1,7 +1,58 @@
 /* src/components/DiagnosticTable/DiagnosticTable.module.scss */
+.DiagnosticTableContainer {
+  padding-top: 20px;
+  // height: 50svh;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  // padding-bottom: 50px;
+}
+
 .entriesTableContainer {
   width: 100%;
-  overflow-x: auto;
+}
+
+.tableWrapper {
+  height: 50svh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  h2 {
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: left;
+    color: #01152b;
+  }
+
+  .tableSearchWrapper {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 5px 15px;
+
+    input {
+      padding: 5px;
+      font-size: 16px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .titleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-items: center;
+  }
 }
 
 .entriesTable {
@@ -12,7 +63,6 @@
   border-radius: 8px;
   background-color: #e6e8ec;
   box-shadow: 0 2px 8px rgba(2, 29, 61, 0.12);
-  margin-top: 20px;
   font-size: 14px;
   font-weight: 500;
   text-align: left;
@@ -20,21 +70,23 @@
 }
 
 .entriesTable td {
-  padding: 10px;
+  padding: 10px 0;
   text-align: left;
+}
+
+.entriesTable td:first-child {
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.entriesTable td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .entriesTable th {
   text-align: left;
-}
-
-.tableSearchWrapper {
-  margin-bottom: 10px;
-}
-
-.tableSearchWrapper input {
-  padding: 5px;
-  font-size: 16px;
 }
 
 th {
@@ -49,6 +101,7 @@ th {
   letter-spacing: normal;
   text-align: left;
   color: #55687d;
+  background-color: #e6e8ec;
 
   span {
     vertical-align: middle;

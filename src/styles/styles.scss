@@ -22,14 +22,68 @@ input {
 }
 
 button {
-  padding: 10px 20px;
+  height: 32px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #fff;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 8px;
   border: none;
-  border-radius: 4px;
-  background-color: #6366f1;
-  color: white;
+  background-color: #7071f3;
   cursor: pointer;
 
   &:hover {
     background-color: #4f46e5;
   }
+}
+
+button.react-datepicker__navigation {
+  border: none;
+  background-color: transparent;
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.react-datepicker__header {
+  padding-top: 10px;
+  h2.react-datepicker__current-month {
+    text-align: center;
+  }
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Rounded corners for the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar handle on hover */
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin; /* Firefox scrollbar width */
+  scrollbar-color: #888 #f1f1f1; /* Firefox scrollbar color and track color */
 }

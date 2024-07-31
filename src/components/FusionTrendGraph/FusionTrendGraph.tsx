@@ -6,6 +6,8 @@ import styles from './FusionTrendGraph.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import chartIcon from '../../assets/chart.icon.svg';
+
 Chart.register(...registerables);
 
 interface Insight {
@@ -20,13 +22,12 @@ interface FusionTrendGraphProps {
 
 const FusionTrendGraph: React.FC<FusionTrendGraphProps> = ({ insights }) => {
   const [startDate, setStartDate] = React.useState<Date | null>(
-    new Date('2024-05-1')
+    new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   );
-  const [endDate, setEndDate] = React.useState<Date | null>(new Date());
 
   const filteredInsights = insights.filter((insight) => {
     const date = new Date(insight.created_at);
-    return date >= (startDate || new Date()) && date <= (endDate || new Date());
+    return date >= (startDate || new Date());
   });
 
   const data: ChartData<'line'> = {
@@ -114,19 +115,16 @@ const FusionTrendGraph: React.FC<FusionTrendGraphProps> = ({ insights }) => {
   return (
     <div className={styles.fusionTrendGraph}>
       <div className={styles.header}>
-        <h2>Fusion trend</h2>
+        <div className={styles.chartHeaderTitle}>
+          <img src={chartIcon} alt='chart Icon' width={16} />
+          <h2>Fusion trend</h2>
+        </div>
         <div className={styles.datePicker}>
-          <span>From</span>
           <DatePicker
             selected={startDate}
             onChange={(date: Date | null) => setStartDate(date)}
             dateFormat='dd.MM.yyyy'
-          />
-          <span>to</span>
-          <DatePicker
-            selected={endDate}
-            onChange={(date: Date | null) => setEndDate(date)}
-            dateFormat='dd.MM.yyyy'
+            className={styles.datePickerInput}
           />
         </div>
       </div>
