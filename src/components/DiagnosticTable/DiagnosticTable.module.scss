@@ -8,7 +8,7 @@
 }
 
 .tableWrapper {
-  height: 60svh;
+  height: calc(100svh - 400px);
   overflow-y: auto;
   overflow-x: hidden;
   padding-bottom: 50px;
@@ -139,4 +139,36 @@ tbody tr {
 
 tbody tr:hover {
   background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+  .entriesTable {
+    font-size: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: normal;
+    gap: 15px;
+  }
+
+  .tableWrapper {
+    height: 30svh;
+  }
+
+  .entriesTable td {
+    padding: 8px 0;
+  }
+
+  .entriesTable th {
+    font-size: 12px;
+  }
+
+  th {
+    height: 30px;
+  }
+
+  tbody tr {
+    height: 40px;
+  }
 }
