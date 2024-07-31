@@ -19,6 +19,10 @@ input {
   padding: 8px;
   border-radius: 0;
   border: unset;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 button {
@@ -42,6 +46,15 @@ button {
 
   &:hover {
     background-color: #4f46e5;
+  }
+
+  &:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 

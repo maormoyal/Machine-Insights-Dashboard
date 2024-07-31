@@ -81,7 +81,11 @@ const AddDiagnosticModal: React.FC<AddDiagnosticModalProps> = ({
           <button onClick={onClose} className={styles.cancelButton}>
             Cancel
           </button>
-          <button onClick={handleSubmit} className={styles.saveButton}>
+          <button
+            onClick={handleSubmit}
+            className={styles.saveButton}
+            disabled={!createdAt}
+          >
             Save
           </button>
         </div>
