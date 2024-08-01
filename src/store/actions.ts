@@ -1,5 +1,4 @@
-// src/store/actions.ts
-import { Insight } from '../models/Insight';
+import { Insight } from '../shared/types/Insight';
 
 export const FETCH_INSIGHTS = 'FETCH_INSIGHTS';
 export const ADD_INSIGHT = 'ADD_INSIGHT';

@@ -1,4 +1,3 @@
-// src/components/DiagnosticTable/DiagnosticTable.tsx
 import React, { useMemo, useState } from 'react';
 import {
   useTable,
@@ -9,7 +8,7 @@ import {
   TableInstance,
   TableState,
 } from 'react-table';
-import { Insight } from '../../models/Insight';
+import { Insight } from '../../shared/types/Insight';
 import styles from './DiagnosticTable.module.scss';
 
 import sortIcon from '../../assets/sort.icon.svg';
@@ -106,7 +105,10 @@ const DiagnosticTable: React.FC<DiagnosticTableProps> = ({ insights }) => {
   };
 
   return (
-    <div className={styles.DiagnosticTableContainer}>
+    <div
+      className={styles.DiagnosticTableContainer}
+      data-testid='diagnostic-table'
+    >
       <div className={styles.entriesTableContainer}>
         <div className={styles.header}>
           <div className={styles.titleWrapper}>

@@ -1,9 +1,10 @@
-// src/components/AddDiagnosticModal/AddDiagnosticModal.tsx
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../hooks/useRedux';
+import { useInsightsDispatch } from '../../hooks/useInsights';
 import { insightPresenter } from '../../presenters/InsightPresenter';
 import Modal from '../Modal/Modal';
 import styles from './AddDiagnosticModal.module.scss';
+import { FaultTypeEnum } from '../../shared/enums/faultType.enum';
+import { SeverityEnum } from '../../shared/enums/severity.enum';
 
 interface AddDiagnosticModalProps {
   show: boolean;
@@ -15,15 +16,14 @@ const AddDiagnosticModal: React.FC<AddDiagnosticModalProps> = ({
   onClose,
 }) => {
   const [createdAt, setCreatedAt] = useState('');
-  const [type, setType] = useState<
-    'NDE bearing inner race deterioration' | 'gear' | 'motor'
-  >('NDE bearing inner race deterioration');
-  const [severity, setSeverity] = useState<'healthy' | 'alarm' | 'critical'>(
-    'healthy'
+  const [type, setType] = useState<FaultTypeEnum>(
+    FaultTypeEnum.NDEBearingInnerRaceDeterioration
   );
-  const dispatch = useAppDispatch();
+  const [severity, setSeverity] = useState<SeverityEnum>(SeverityEnum.Healthy);
+  const dispatch = useInsightsDispatch();
 
   const handleSubmit = () => {
+    if (!createdAt) return;
     const newDiagnostic = { created_at: createdAt, type, severity };
     insightPresenter.createInsight(dispatch, newDiagnostic);
     onClose();
@@ -47,14 +47,7 @@ const AddDiagnosticModal: React.FC<AddDiagnosticModalProps> = ({
           <select
             id='type'
             value={type}
-            onChange={(e) =>
-              setType(
-                e.target.value as
-                  | 'NDE bearing inner race deterioration'
-                  | 'gear'
-                  | 'motor'
-              )
-            }
+            onChange={(e) => setType(e.target.value as FaultTypeEnum)}
           >
             <option value='NDE bearing inner race deterioration'>
               NDE bearing inner race deterioration
@@ -68,9 +61,7 @@ const AddDiagnosticModal: React.FC<AddDiagnosticModalProps> = ({
           <select
             id='severity'
             value={severity}
-            onChange={(e) =>
-              setSeverity(e.target.value as 'healthy' | 'alarm' | 'critical')
-            }
+            onChange={(e) => setSeverity(e.target.value as SeverityEnum)}
           >
             <option value='healthy'>Healthy</option>
             <option value='alarm'>Alarm</option>

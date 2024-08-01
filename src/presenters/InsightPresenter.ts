@@ -1,11 +1,14 @@
-// src/presenters/InsightPresenter.ts
-import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import { insightRepository } from '../repositories/InsightRepository';
 import { fetchInsights, addInsight } from '../store/actions';
-import { Insight } from '../models/Insight';
+import { Insight } from '../shared/types/Insight';
+import { RootState } from '../store/store';
+
+type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
 
 class InsightPresenter {
-  async loadInsights(dispatch: Dispatch, fromDate: string) {
+  async loadInsights(dispatch: AppDispatch, fromDate: string) {
     try {
       const insights = await insightRepository.getInsights(fromDate);
       if (Array.isArray(insights)) {
@@ -18,7 +21,7 @@ class InsightPresenter {
     }
   }
 
-  async createInsight(dispatch: Dispatch, insight: Partial<Insight>) {
+  async createInsight(dispatch: AppDispatch, insight: Partial<Insight>) {
     try {
       const newInsight = await insightRepository.addInsight(insight);
       dispatch(
