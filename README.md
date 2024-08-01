@@ -150,5 +150,5 @@ Contact
 If you have any questions or suggestions, feel free to open an issue or contact the repository owner.
 
 ```
-
+Maor Moyal - maorkab@gmail.com
 ```
