@@ -1,26 +1,13 @@
-// src/components/Layout/Layout.tsx
 import React, { useState } from 'react';
 import styles from './Layout.module.scss';
+import { NAV_ITEMS } from '../../shared/constants/navItems';
 
 import datamindLogo from '../../assets/datamind-logo.icon.svg';
-import factoryIcon from '../../assets/factory.icon.svg';
-import circleInfoIcon from '../../assets/circle-info.icon.svg';
-import bellIcon from '../../assets/bell.icon.svg';
-import fileIcon from '../../assets/file.icon.svg';
-import settingsIcon from '../../assets/settings.icon.svg';
 import logoutIcon from '../../assets/logout.icon.svg';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
-
-const navItems = [
-  { title: 'Diagnostics', icon: factoryIcon },
-  { title: 'Information', icon: circleInfoIcon },
-  { title: 'Alerts', icon: bellIcon },
-  { title: 'Files', icon: fileIcon },
-  { title: 'Settings', icon: settingsIcon },
-];
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [selectedNavItem, setSelectedNavItem] = useState<string>('Diagnostics');
@@ -34,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <aside className={styles.sidebar}>
         <nav className={styles.nav}>
           <ul>
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <li
                 key={item.title}
                 className={`${styles.navItem} ${

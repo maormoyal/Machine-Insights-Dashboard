@@ -1,6 +1,5 @@
-// src/store/reducers.ts
 import { InsightActionTypes, FETCH_INSIGHTS, ADD_INSIGHT } from './actions';
-import { Insight } from '../models/Insight';
+import { Insight } from '../shared/types/Insight';
 
 interface InsightState {
   insights: Insight[];
