@@ -126,14 +126,15 @@ yarn run test:coverage
 
 ## Project Structure
 
-src/components: Contains all the React components.
-src/hooks: Custom hooks used throughout the application.
-src/presenters: Presenter classes handling business logic.
-src/repositories: Repository classes for data fetching.
-src/shared: Shared types, enums, and utilities.
-src/store: Redux store configuration and slices.
+src/components: Contains all the React components.  
+src/hooks: Custom hooks used throughout the application.  
+src/presenters: Presenter classes handling business logic.  
+src/repositories: Repository classes for data fetching.  
+src/shared: Shared types, enums, and utilities.  
+src/store: Redux store configuration and slices.  
 src/styles: Global styles and SCSS files.
-Contributing
+
+## Contributing
 
 ## To contribute to this project, please follow these steps:
 
