@@ -1,20 +1,14 @@
-// src/components/FusionTrendGraph/FusionTrendGraph.tsx
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables, ChartData, ChartOptions } from 'chart.js';
 import styles from './FusionTrendGraph.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Insight } from '../../shared/types/Insight';
 
 import chartIcon from '../../assets/chart.icon.svg';
 
 Chart.register(...registerables);
-
-interface Insight {
-  created_at: string;
-  type: string;
-  severity: 'healthy' | 'alarm' | 'critical';
-}
 
 interface FusionTrendGraphProps {
   insights: Insight[];
@@ -22,7 +16,7 @@ interface FusionTrendGraphProps {
 
 const FusionTrendGraph: React.FC<FusionTrendGraphProps> = ({ insights }) => {
   const [startDate, setStartDate] = React.useState<Date | null>(
-    new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+    new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1)
   );
 
   const filteredInsights = insights.filter((insight) => {
@@ -86,15 +80,15 @@ const FusionTrendGraph: React.FC<FusionTrendGraphProps> = ({ insights }) => {
         grid: {
           display: true,
           drawOnChartArea: true,
-          color: '#b1b9c3', // Adjust grid line color
+          color: '#b1b9c3',
           lineWidth: 1,
         },
         border: {
           display: false,
-          dash: [5, 5], // Dotted grid lines
+          dash: [5, 5],
         },
         ticks: {
-          color: '#6b7280', // Adjust tick color
+          color: '#6b7280',
         },
       },
       y: {
@@ -107,13 +101,13 @@ const FusionTrendGraph: React.FC<FusionTrendGraphProps> = ({ insights }) => {
       },
       line: {
         borderWidth: 2,
-        borderColor: '#b1b9c3', // Line color
+        borderColor: '#b1b9c3',
       },
     },
   };
 
   return (
-    <div className={styles.fusionTrendGraph}>
+    <div className={styles.fusionTrendGraph} data-testid='fusion-trend-graph'>
       <div className={styles.header}>
         <div className={styles.chartHeaderTitle}>
           <img src={chartIcon} alt='chart Icon' width={16} />

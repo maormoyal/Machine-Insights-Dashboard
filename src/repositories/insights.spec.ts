@@ -2,7 +2,9 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { insightRepository } from './InsightRepository';
 import { insightsMockData } from './insights.dataspec';
-import { Insight } from '../models/Insight';
+import { Insight } from '../shared/types/Insight';
+import { FaultTypeEnum } from '../shared/enums/faultType.enum';
+import { SeverityEnum } from '../shared/enums/severity.enum';
 
 jest.mock('uuid', () => ({
   v4: jest.fn(() => 'mock-uuid'),
@@ -24,8 +26,8 @@ describe('InsightRepository', () => {
       {
         insight_id: '1',
         created_at: '2024-05-01 00:00:00',
-        type: 'gear',
-        severity: 'alarm',
+        type: FaultTypeEnum.Gear,
+        severity: SeverityEnum.Alarm,
       },
     ];
     mock
@@ -48,8 +50,8 @@ describe('InsightRepository', () => {
   it('should add a new insight and return its id', async () => {
     const newInsight: Partial<Insight> = {
       created_at: '2024-05-01 00:00:00',
-      type: 'motor',
-      severity: 'critical',
+      type: FaultTypeEnum.Motor,
+      severity: SeverityEnum.Critical,
     };
     const mockResponse = { insight_id: 'mock-uuid' };
     mock.onPost('/api/insights').reply(200, mockResponse);
@@ -61,8 +63,8 @@ describe('InsightRepository', () => {
   it('should return a mock UUID if adding a new insight fails', async () => {
     const newInsight: Partial<Insight> = {
       created_at: '2024-05-01 00:00:00',
-      type: 'motor',
-      severity: 'critical',
+      type: FaultTypeEnum.Motor,
+      severity: SeverityEnum.Critical,
     };
     mock.onPost('/api/insights').networkError();
 
